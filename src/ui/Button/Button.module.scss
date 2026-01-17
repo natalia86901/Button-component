@@ -1,0 +1,127 @@
+@use '../../app/styles/mixin.scss' as *;
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    font-size: 18px;
+    position: relative;
+    border-radius: var(--border-radius);
+}
+
+@mixin buttonUnderline($line-color) {
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.5s ease-in-out;
+
+    .underLine {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    align-self: flex-end;
+    transform: translateX(-100%);
+    background-color: $line-color;
+    transition: all 0.3s ease-out;
+}
+
+&:hover .underLine {
+    transform: translateX(0);
+  }
+}
+
+
+.primary {
+    @include buttonUnderline(var(--pink-color));
+    background-color: var(--blue-color);
+    color: var(--white-color);
+    transition: background-color 0.5s ease-in-out;
+
+}
+
+.outline {
+    @include buttonUnderline(var(--blue-color));
+
+    & {
+    background-color: transparent;
+    border: 2px solid var(--blue-color);
+    color: var(--blue-color);
+    }
+}
+
+.secondary {
+    background-color: var(--pink-color);
+    color: var(--white-color);
+}
+
+.transparent {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: var(--blue-color);
+}
+
+.circle {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+
+.cta {
+   @include cta-style;
+}
+
+.loading {
+    width: 42px;
+    position: absolute;
+    top: 40%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+}
+
+circle {
+    fill: black;
+    transform: scale(1.5);
+    animation: fade-in 1.2s infinite;
+
+@keyframes fade-in {
+    0% {opacity: 1;}
+    50%, 100% {opacity: 0.5;}
+}
+
+
+@for $i from 1 through 3 {
+    &:nth-child(#{$i}) {
+    animation-delay: 0.4s * ($i - 1);
+    }
+  }
+}
+
+
+.disabled {
+    background-color: #dcdcdc;
+    color: #7a7a7a;
+    border: none;
+    cursor: not-allowed;
+    pointer-events: none;
+
+.underLine {
+    display: none;
+}
+
+&:hover {
+    background-color: #dcdcdc;
+}
+}
+
+

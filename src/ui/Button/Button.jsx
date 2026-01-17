@@ -6,7 +6,7 @@ export const Button  =  (props) => {
 const {
 children,
 className,
-color = 'primary', 
+color = 'primary', //secondary | outline | transparent | disabled
 circle,//boolean 
 cta, // boolean
 loading, //booolean
